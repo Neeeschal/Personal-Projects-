@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Year — Baisakh 24, 2083</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f0;
+    --blush: #e8c4b8;
+    --rose: #c17b6f;
+    --burgundy: #7a2d3b;
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --deep: #1a0a0f;
+    --ink: #2d1520;
+    --mist: rgba(250,246,240,0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── Custom Cursor ── */
+  #cursor {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, background 0.3s;
+    mix-blend-mode: difference;
+  }
+  #cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 9998;
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, opacity 0.3s;
+    opacity: 0.5;
+  }
+
+  /* ── Particle Canvas ── */
+  #particles {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── Hero Section ── */
+  #hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(122,45,59,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(193,123,111,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(201,168,76,0.12) 0%, transparent 60%);
+  }
+
+  .nepali-date {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero-ornament {
+    width: 180px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s 0.6s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.5s forwards;
+  }
+
+  .hero-title .accent {
+    font-style: italic;
+    color: var(--blush);
+  }
+
+  .hero-title .gold {
+    color: var(--gold-light);
+    -webkit-text-stroke: 1px var(--gold);
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-style: italic;
+    color: var(--blush);
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+    max-width: 560px;
+  }
+
+  .hero-divider {
+    display: flex; align-items: center; gap: 1.2rem;
+    margin-top: 2.5rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+
+  .hero-divider span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    text-transform: uppercase;
+  }
+
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose));
+  }
+  .hero-divider::after {
+    background: linear-gradient(to left, transparent, var(--rose));
+  }
+
+  /* ── Countdown ── */
+  #countdown {
+    position: relative; z-index: 1;
+    padding: 6rem 2rem;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    opacity: 0.7;
+  }
+
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .count-box {
+    flex: 0 0 min(22vw, 160px);
+    padding: 2.5rem 1rem;
+    position: relative;
+    cursor: default;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .count-box:hover { transform: translateY(-8px); }
+
+  .count-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    border: 1px solid rgba(201,168,76,0.15);
+    transition: border-color 0.3s;
+  }
+  .count-box:hover::before { border-color: rgba(201,168,76,0.5); }
+
+  .count-box:first-child::before { border-right: none; }
+  .count-box:not(:first-child):not(:last-child)::before { border-right: none; }
+
+  .count-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--cream);
+    transition: color 0.3s;
+    display: block;
+  }
+
+  .count-box:hover .count-num { color: var(--gold-light); }
+
+  .count-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+    display: block;
+  }
+
+  .count-box::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.015);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* ── Message Section ── */
+  #message {
+    position: relative; z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .message-quote {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--cream);
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s, transform 1s;
+  }
+
+  .message-quote.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .message-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -1.5rem; left: -1rem;
+    font-size: 8rem;
+    color: var(--burgundy);
+    font-style: normal;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+    opacity: 0.4;
+  }
+
+  .message-author {
+    margin-top: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s 0.3s, transform 1s 0.3s;
+  }
+
+  .message-author.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Gallery ── */
+  #gallery {
+    position: relative; z-index: 1;
+    padding: 5rem 2rem 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  /* Upload zone */
+  #upload-zone {
+    border: 1.5px dashed rgba(201,168,76,0.35);
+    border-radius: 4px;
+    padding: 2.2rem 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #upload-zone:hover, #upload-zone.drag-over {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  #upload-zone input[type="file"] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+
+  .upload-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+
+  .upload-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .upload-hint {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--blush);
+    font-style: italic;
+    opacity: 0.6;
+  }
+
+  /* Filter tabs */
+  .gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border: 1px solid rgba(201,168,76,0.25);
+    background: transparent;
+    color: var(--blush);
+    cursor: none;
+    transition: all 0.25s;
+    border-radius: 2px;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  /* Masonry grid */
+  .masonry {
+    columns: 3 280px;
+    column-gap: 1rem;
+  }
+
+  .gallery-card {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    cursor: none;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.55s, transform 0.55s;
+  }
+
+  .gallery-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .gallery-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .gallery-card:hover img { transform: scale(1.06); }
+
+  .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,10,15,0.88) 0%, rgba(26,10,15,0.1) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.35s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.2rem;
+  }
+
+  .gallery-card:hover .card-overlay { opacity: 1; }
+
+  .card-season {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .card-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.35;
+  }
+
+  .card-delete {
+    position: absolute; top: 0.6rem; right: 0.6rem;
+    background: rgba(26,10,15,0.7);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--blush);
+    font-size: 0.75rem;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: none;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s;
+  }
+
+  .gallery-card:hover .card-delete { opacity: 1; }
+  .card-delete:hover { background: var(--burgundy); border-color: var(--rose); }
+
+  /* Placeholder cards */
+  .gallery-card.placeholder {
+    background: rgba(201,168,76,0.04);
+    border: 1px dashed rgba(201,168,76,0.15);
+    aspect-ratio: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    opacity: 1;
+    transform: none;
+  }
+
+  .placeholder-icon { font-size: 2rem; opacity: 0.25; }
+  .placeholder-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    opacity: 0.3;
+    text-transform: uppercase;
+  }
+
+  /* Empty state */
+  .gallery-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    display: none;
+  }
+
+  .gallery-empty.show { display: block; }
+
+  .gallery-empty p {
+    font-style: italic;
+    color: var(--blush);
+    opacity: 0.5;
+    font-size: 1.1rem;
+  }
+
+  /* ── Lightbox ── */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(10,4,8,0.96);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 2rem;
+  }
+
+  #lightbox.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  #lightbox img {
+    max-width: min(90vw, 900px);
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 3px;
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    transform: scale(0.92);
+  }
+
+  #lightbox.open img { transform: scale(1); }
+
+  .lb-info {
+    position: absolute;
+    bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .lb-season {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .lb-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+
+  .lb-close {
+    position: absolute; top: 1.5rem; right: 2rem;
+    font-size: 1.6rem;
+    color: var(--blush);
+    cursor: none;
+    background: none; border: none;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+    line-height: 1;
+  }
+
+  .lb-close:hover { opacity: 1; transform: rotate(90deg); }
+
+  .lb-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    cursor: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .lb-nav:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); }
+  #lb-prev { left: 1.5rem; }
+  #lb-next { right: 1.5rem; }
+
+  .lb-counter {
+    position: absolute; top: 1.8rem; left: 50%; transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--blush);
+    opacity: 0.5;
+  }
+
+  /* ── Petals ── */
+  .petal {
+    position: fixed;
+    top: -60px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    font-size: 1.2rem;
+    animation: petalFall linear forwards;
+  }
+
+  @keyframes petalFall {
+    0% { opacity: 0.9; transform: translateY(0) rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: translateY(110vh) rotate(720deg) scale(0.5); }
+  }
+
+  /* ── Heart Button ── */
+  #heart-zone {
+    position: relative; z-index: 1;
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  #heart-btn {
+    background: none; border: none; cursor: none;
+    font-size: 5rem;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+    filter: drop-shadow(0 0 20px rgba(193,123,111,0.5));
+    animation: heartPulse 2.5s ease-in-out infinite;
+    user-select: none;
+  }
+
+  #heart-btn img {
+    width: 1.1em;
+    height: 1.1em;
+    display: block;
+  }
+
+  #heart-btn:hover {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 40px rgba(201,168,76,0.7));
+  }
+
+  @keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .heart-label {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--rose);
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  #heart-counter {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-top: 0.5rem;
+    min-height: 1.8rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    position: relative; z-index: 1;
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  footer .footer-date {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-style: italic;
+    color: var(--gold);
+    opacity: 0.4;
+  }
+
+  footer .footer-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--blush);
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── Scroll progress ── */
+  #progress {
+    position: fixed; top: 0; left: 0; z-index: 100;
+    height: 2px;
+    background: linear-gradient(to right, var(--burgundy), var(--gold), var(--blush));
+    width: 0%;
+    transition: width 0.1s;
+  }
+
+  /* ── Stars canvas overlay ── */
+  #stars {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── Glow orbs ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: orbFloat ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(122,45,59,0.2), transparent 70%);
+    top: -100px; left: -100px;
+    animation-duration: 12s;
+  }
+
+  .orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
+    bottom: -80px; right: -80px;
+    animation-duration: 15s;
+    animation-delay: -5s;
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-15px, 25px) scale(0.97); }
+  }
+
+  /* ── Flip number animation ── */
+  .count-num {
+    animation: none;
+  }
+
+  .count-num.flip {
+    animation: flipNum 0.4s cubic-bezier(0.36,0.07,0.19,0.97);
+  }
+
+  @keyframes flipNum {
+    0% { transform: rotateX(0); opacity: 1; }
+    50% { transform: rotateX(-90deg); opacity: 0; }
+    51% { transform: rotateX(90deg); opacity: 0; }
+    100% { transform: rotateX(0); opacity: 1; }
+  }
+
+  /* ── Sparkle burst ── */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 50;
+    font-size: 1rem;
+    animation: sparklePop 0.8s ease-out forwards;
+  }
+
+  @keyframes sparklePop {
+    0% { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+  }
+
+  /* ── Memories Gallery ── */
+  #memories {
+    position: relative; z-index: 1;
+    padding: 5rem 2rem 6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .memories-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .memories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 1rem;
+  }
+
+  /* Spanning variants for visual variety */
+  .mem-card:nth-child(1)  { grid-column: span 2; grid-row: span 2; }
+  .mem-card:nth-child(5)  { grid-column: span 2;grid-row: span 2; }
+  .mem-card:nth-child(8)  { grid-column: span 2; grid-row: span 2; }
+  .mem-card:nth-child(10) { grid-column: span 2; }
+
+  .mem-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    cursor: none;
+  }
+
+  .mem-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Staggered entrance */
+  .mem-card:nth-child(1)  { transition-delay: 0.05s; }
+  .mem-card:nth-child(2)  { transition-delay: 0.10s; }
+  .mem-card:nth-child(3)  { transition-delay: 0.15s; }
+  .mem-card:nth-child(4)  { transition-delay: 0.20s; }
+  .mem-card:nth-child(5)  { transition-delay: 0.25s; }
+  .mem-card:nth-child(6)  { transition-delay: 0.30s; }
+  .mem-card:nth-child(7)  { transition-delay: 0.35s; }
+  .mem-card:nth-child(8)  { transition-delay: 0.40s; }
+  .mem-card:nth-child(9)  { transition-delay: 0.45s; }
+  .mem-card:nth-child(10) { transition-delay: 0.50s; }
+  .mem-card:nth-child(11) { transition-delay: 0.55s; }
+  .mem-card:nth-child(12) { transition-delay: 0.60s; }
+
+  .mem-bg {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+
+  .mem-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .mem-card:hover .mem-bg img { transform: scale(1.08); }
+
+  /* Gradient tints per season */
+  .mem-card[data-season="spring"] .mem-bg  { background: linear-gradient(135deg, rgba(232,196,184,0.18), rgba(122,45,59,0.35)); }
+  .mem-card[data-season="summer"] .mem-bg  { background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(193,123,111,0.30)); }
+  .mem-card[data-season="monsoon"] .mem-bg { background: linear-gradient(135deg, rgba(45,21,32,0.4), rgba(122,45,59,0.45)); }
+  .mem-card[data-season="autumn"] .mem-bg  { background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(122,45,59,0.25)); }
+  .mem-card[data-season="winter"] .mem-bg  { background: linear-gradient(135deg, rgba(100,120,160,0.2), rgba(26,10,15,0.5)); }
+  .mem-card[data-season="today"]  .mem-bg  { background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(232,196,184,0.3)); }
+
+  .mem-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,10,15,0.92) 0%, rgba(26,10,15,0.2) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.35s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.4rem;
+  }
+
+  .mem-card:hover .mem-overlay { opacity: 1; }
+  .mem-overlay { display: none !important; }
+
+  /* Always-visible bottom strip on large cards */
+  .mem-card:nth-child(1) .mem-overlay,
+  .mem-card:nth-child(8) .mem-overlay {
+    opacity: 0.85;
+  }
+  .mem-card:nth-child(1):hover .mem-overlay,
+  .mem-card:nth-child(8):hover .mem-overlay {
+    opacity: 1;
+  }
+
+  .mem-season {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .mem-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .mem-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--blush);
+    opacity: 0.85;
+    line-height: 1.4;
+  }
+
+  /* Decorative corner ornament */
+  .mem-corner {
+    position: absolute;
+    top: 0.8rem; right: 0.8rem;
+    width: 28px; height: 28px;
+    opacity: 0.25;
+    transition: opacity 0.3s;
+  }
+
+  .mem-card:hover .mem-corner { opacity: 0.7; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .memories-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+    }
+    .mem-card:nth-child(1)  { grid-column: span 2; grid-row: span 1; }
+    .mem-card:nth-child(5)  { grid-column: span 2; }
+    .mem-card:nth-child(8)  { grid-column: span 2; grid-row: span 1; }
+    .mem-card:nth-child(10) { grid-column: span 2; }
+    .countdown-grid { gap: 0; }
+    .count-box { flex: 0 0 45vw; }
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 1000;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="progress"></div>
+<canvas id="stars"></canvas>
+<canvas id="particles"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <p class="nepali-date">Baisakh 24, 2082 → Baisakh 24, 2083</p>
+  <div class="hero-ornament"></div>
+  <h1 class="hero-title">
+    <span class="accent">One</span><br>
+    <span class="gold">Year</span><br>
+    <span class="accent">Together</span>
+  </h1>
+  <p class="hero-sub">Three hundred and sixty-five dawns, and every single one made brighter by you.</p>
+  <div class="hero-divider"><span>Scroll to celebrate</span></div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+  <p class="section-label">Until your special day</p>
+  <div class="countdown-grid">
+    <div class="count-box" data-label="DAYS">
+      <span class="count-num" id="cd-d">00</span>
+      <span class="count-label">Days</span>
+    </div>
+    <div class="count-box" data-label="HOURS">
+      <span class="count-num" id="cd-h">00</span>
+      <span class="count-label">Hours</span>
+    </div>
+    <div class="count-box" data-label="MIN">
+      <span class="count-num" id="cd-m">00</span>
+      <span class="count-label">Minutes</span>
+    </div>
+    <div class="count-box" data-label="SEC">
+      <span class="count-num" id="cd-s">00</span>
+      <span class="count-label">Seconds</span>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section id="message">
+  <p class="section-label">A letter, written in moments</p>
+  <blockquote class="message-quote" id="msg-quote">
+    Ek barsa ko yatra calender ko box ma simit hudainan — Yo ta bacheka ti nyano pal haru, hasdai kheldei sangai bitayeka ti pal haru, ra syana syana ti pal haru jasma hamle ek arka lai choose garxau, sadhai and sadhai.
+  </blockquote>
+  <p class="message-author" id="msg-author">— With all my heart, always yours</p>
+</section>
+
+<!-- MEMORIES GALLERY -->
+<section id="memories">
+  <div class="memories-header">
+    <p class="section-label">A year of beautiful moments</p>
+  </div>
+
+  <div class="memories-grid">
+
+    <!-- 1 · large hero card -->
+    <div class="mem-card" data-season="spring">
+      <div class="mem-bg"><img loading="lazy" src="https://imgur.com/sh3iIix.jpg" alt="Spring blooms"></div>
+      <svg class="mem-corner" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2 L26 2 L26 26" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 2082 · Spring</p>
+        <h3 class="mem-title">The Beginning</h3>
+        <p class="mem-desc">The day that changed everything. A hello that carried a universe inside it.</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="mem-card" data-season="spring">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/CXizzJI.jpg" alt="Bouquet of flowers"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 2082</p>
+        <h3 class="mem-title">First Words</h3>
+        <p class="mem-desc">A conversation that never really ended.</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="mem-card" data-season="spring">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/E4JxsBg.jpg" alt="Bright sun"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 2082</p>
+        <h3 class="mem-title">New Dawns</h3>
+        <p class="mem-desc">The world looked different, brighter somehow.</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="mem-card" data-season="summer">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/sGYRVZ5.jpg" alt="Sunflower"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Jestha 2082 · Summer</p>
+        <h3 class="mem-title">First Adventures</h3>
+        <p class="mem-desc">Wandering streets, discovering each other's favourite places.</p>
+      </div>
+    </div>
+
+  
+
+    <!-- 6 -->
+    <div class="mem-card" data-season="summer">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/g2nGW9l.jpg" alt="A shared meal"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Jestha 2082</p>
+        <h3 class="mem-title">Favourite Bites</h3>
+        <p class="mem-desc">Every meal tasted better with you across the table.</p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="mem-card" data-season="monsoon">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/qjAsWx0.jpg" alt="Soft rain"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Shrawan 2082 · Monsoon</p>
+        <h3 class="mem-title">Rain & Warmth</h3>
+        <p class="mem-desc">Grey skies, golden edges — every cloud yours to share.</p>
+      </div>
+    </div>
+
+    <!-- 8 · large card -->
+    <div class="mem-card" data-season="monsoon">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/HkNlZce.jpg" alt="Coffee in the rain"></div>
+      <svg class="mem-corner" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2 L26 2 L26 26" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div class="mem-overlay">
+        <p class="mem-season">Bhadra 2082 · Monsoon Deep</p>
+        <h3 class="mem-title">Quiet Afternoons</h3>
+        <p class="mem-desc">Tea, rain on the window, and the luxury of no words needed.</p>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="mem-card" data-season="autumn">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/bj2lEw0.jpg" alt="Autumn leaves"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Kartik 2082 · Autumn</p>
+        <h3 class="mem-title">Festival Lights</h3>
+        <p class="mem-desc">Tihar diyas, your smile brighter than all of them.</p>
+      </div>
+    </div>
+
+   
+
+    <!-- 11 -->
+    <div class="mem-card" data-season="winter">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/djzdMru.jpg" alt="Colorful celebration"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Falgun 2082 · Late Winter</p>
+        <h3 class="mem-title">Holi & Colour</h3>
+        <p class="mem-desc">You painted my world in shades I'd never seen before.</p>
+      </div>
+    </div>
+
+    <!-- 12 · today -->
+    <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/MwitqyI.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+    <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/3Gxxphw.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+    
+    <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/EbA8vq4.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+    <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/4q6G1Qh.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+    <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/t52jkoI.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+    <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://imgur.com/IgztlxI.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+        <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://imgur.com/6tYmals.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+        <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://imgur.com/j1SG8nP.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+        <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/vGGyGX7.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+        <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/v3ExhGe.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+        <div class="mem-card" data-season="today">
+      <div class="mem-bg"><img loading="lazy" src="https://i.imgur.com/Z3R1uH2.jpg" alt="Today"></div>
+      <div class="mem-overlay">
+        <p class="mem-season">Baisakh 24, 2083 · Now</p>
+        <h3 class="mem-title">One Year ✦</h3>
+        <p class="mem-desc">Where we began — and everything is beautifully different.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HEART INTERACTION -->
+<section id="heart-zone">
+  <p class="section-label">Send a little love</p>
+  <button id="heart-btn" aria-label="Send love">💗</button>
+  <span class="heart-label">Tap to send love</span>
+  <p id="heart-counter"></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-date">Baisakh 24, 2083</p>
+  <p class="footer-note">One year of the most beautiful story. Here's to forever.</p>
+</footer>
+
+<script>
+// ── Custom Cursor ──
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+let mx = 0, my = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top  = my + 'px';
+  ring.style.left   = mx + 'px';
+  ring.style.top    = my + 'px';
+});
+
+// ── Stars Canvas ──
+const starsC = document.getElementById('stars');
+const stCtx  = starsC.getContext('2d');
+let stars = [];
+
+function resizeStars() {
+  starsC.width  = window.innerWidth;
+  starsC.height = window.innerHeight;
+  stars = Array.from({length: 180}, () => ({
+    x: Math.random() * starsC.width,
+    y: Math.random() * starsC.height,
+    r: Math.random() * 1.2 + 0.2,
+    a: Math.random(),
+    s: Math.random() * 0.008 + 0.002
+  }));
+}
+
+function drawStars() {
+  stCtx.clearRect(0, 0, starsC.width, starsC.height);
+  stars.forEach(s => {
+    s.a += s.s;
+    const a = Math.abs(Math.sin(s.a));
+    stCtx.beginPath();
+    stCtx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    stCtx.fillStyle = `rgba(240,208,128,${a * 0.7})`;
+    stCtx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resizeStars();
+drawStars();
+window.addEventListener('resize', resizeStars);
+
+// ── Particle Canvas ──
+const partC = document.getElementById('particles');
+const pCtx  = partC.getContext('2d');
+let parts = [];
+
+function resizeParts() {
+  partC.width  = window.innerWidth;
+  partC.height = window.innerHeight;
+}
+
+function spawnParticle(x, y) {
+  for (let i = 0; i < 3; i++) {
+    parts.push({
+      x, y,
+      vx: (Math.random() - 0.5) * 1.5,
+      vy: (Math.random() - 0.5) * 1.5 - 0.5,
+      r: Math.random() * 2 + 0.5,
+      life: 1,
+      decay: Math.random() * 0.015 + 0.008,
+      hue: Math.random() < 0.5 ? '201,168,76' : '193,123,111'
+    });
+  }
+}
+
+document.addEventListener('mousemove', e => spawnParticle(e.clientX, e.clientY));
+
+function drawParticles() {
+  pCtx.clearRect(0, 0, partC.width, partC.height);
+  parts = parts.filter(p => p.life > 0);
+  parts.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    p.life -= p.decay;
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    pCtx.fillStyle = `rgba(${p.hue},${p.life * 0.6})`;
+    pCtx.fill();
+  });
+  requestAnimationFrame(drawParticles);
+}
+
+resizeParts();
+drawParticles();
+window.addEventListener('resize', resizeParts);
+
+// ── Scroll Progress ──
+const prog = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+});
+
+// ── Countdown to Baisakh 24, 2083 ──
+// Baisakh 24, 2083 BS = May 7, 2026 AD
+const target = new Date('2026-05-07T00:00:00');
+
+function pad(n) { return String(n).padStart(2,'0'); }
+
+const cdEls = {
+  d: document.getElementById('cd-d'),
+  h: document.getElementById('cd-h'),
+  m: document.getElementById('cd-m'),
+  s: document.getElementById('cd-s')
+};
+
+function flipEl(el, val) {
+  const str = pad(val);
+  if (el.textContent !== str) {
+    el.classList.remove('flip');
+    void el.offsetWidth; // reflow
+    el.classList.add('flip');
+    el.textContent = str;
+  }
+}
+
+function updateCountdown() {
+  const now  = new Date();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    Object.values(cdEls).forEach(el => { el.textContent = '00'; });
+    return;
+  }
+
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+
+  flipEl(cdEls.d, d);
+  flipEl(cdEls.h, h);
+  flipEl(cdEls.m, m);
+  flipEl(cdEls.s, s);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── Intersection Observer for scroll reveals ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.message-quote, .message-author, .mem-card')
+  .forEach(el => observer.observe(el));
+
+// ── Petal Rain ──
+const petals = ['🌸','🌺','🌷','✿','❀','🌹'];
+
+function spawnPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petals[Math.floor(Math.random() * petals.length)];
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+  const dur = 4 + Math.random() * 5;
+  p.style.animationDuration = dur + 's';
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), dur * 1000);
+}
+
+setInterval(spawnPetal, 800);
+
+// ── Heart Button ──
+const heartBtn  = document.getElementById('heart-btn');
+const heartCount = document.getElementById('heart-counter');
+let beats = 0;
+const hearts = ['💗','💖','💝','💕','❤️','🧡','💛'];
+const msgs = [
+  '❤️ Love you',
+  '💕 Always',
+  '✨ Forever yours',
+  '🌹 My everything',
+  '💫 One year, infinite memories',
+  '🌸 You mean the world',
+  '💖 Happy anniversary!',
+];
+
+function sparkle(x, y) {
+  const emojis = ['✨','⭐','💫','🌟','★'];
+  for (let i = 0; i < 8; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    const angle = (i / 8) * Math.PI * 2;
+    const dist  = 60 + Math.random() * 60;
+    s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    s.style.left = (x - 10) + 'px';
+    s.style.top  = (y - 10) + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 900);
+  }
+}
+
+heartBtn.addEventListener('click', e => {
+  beats++;
+  heartBtn.textContent = hearts[beats % hearts.length];
+  heartCount.textContent = msgs[beats % msgs.length];
+  sparkle(e.clientX, e.clientY);
+  // shoot petals burst
+  for (let i = 0; i < 4; i++) setTimeout(spawnPetal, i * 80);
+});
+
+// ── Scroll-driven hero parallax ──
+window.addEventListener('scroll', () => {
+  const hero = document.getElementById('hero');
+  const offset = window.scrollY * 0.3;
+  hero.style.transform = `translateY(${offset}px)`;
+});
+</script>
+</body>
+</html>
