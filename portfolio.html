@@ -7,23 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
 
-/* ============================================================
-   🎨 EASY CUSTOMIZATION — CHANGE THINGS HERE!
-   ============================================================ */
-
 :root {
-  --color-bg:       #0d0f14;       /* 🎨 Page background */
-  --color-surface:  #151820;       /* 🎨 Card background */
-  --color-accent:   #c8a96e;       /* 🎨 Gold highlight color */
-  --color-accent2:  #6e9fc8;       /* 🎨 Blue secondary color */
-  --color-text:     #e8e4dc;       /* 🎨 Main text color */
-  --color-muted:    #7a7a8a;       /* 🎨 Subtle text color */
-  --color-border:   #2a2d38;       /* 🎨 Line/border color */
-  --font-display:   'Playfair Display', serif;   /* 🔤 Heading font */
-  --font-body:      'DM Sans', sans-serif;       /* 🔤 Body font */
+  --color-bg:       #0d0f14;     
+  --color-surface:  #151820;     
+  --color-accent:   #c8a96e;      
+  --color-accent2:  #6e9fc8;       
+  --color-text:     #e8e4dc;      
+  --color-muted:    #7a7a8a;      
+  --color-border:   #2a2d38;      
+  --font-display:   'Playfair Display', serif;  
+  --font-body:      'DM Sans', sans-serif;      
 }
-
-/* ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -38,7 +32,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── GRAIN OVERLAY ── */
+
 body::before {
   content: '';
   position: fixed; inset: 0; pointer-events: none; z-index: 999;
@@ -46,12 +40,12 @@ body::before {
   opacity: 0.35;
 }
 
-/* ── SCROLLBAR ── */
+
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 2px; }
 
-/* ── NAV ── */
+
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
@@ -78,10 +72,10 @@ nav {
 }
 .nav-links a:hover { color: var(--color-accent); }
 
-/* ── SECTIONS WRAPPER ── */
+
 section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
 
-/* ── Person ── */
+
 #Person {
   min-height: 100vh; display: flex; flex-direction: column;
   justify-content: center; position: relative; max-width: 100%;
@@ -138,7 +132,7 @@ section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
 }
 @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
 
-/* ── SECTION LABELS ── */
+
 .section-label {
   font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
   color: var(--color-accent); margin-bottom: 0.6rem;
@@ -155,7 +149,7 @@ section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
   line-height: 1.15; margin-bottom: 3rem;
 }
 
-/* ── ABOUT ── */
+
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .about-photo-wrap {
   position: relative; aspect-ratio: 3/4; max-height: 480px;
@@ -186,7 +180,7 @@ section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
 }
 .fact-value { color: var(--color-text); font-size: 0.9rem; }
 
-/* ── SKILLS ── */
+
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
 .skill-card {
   background: var(--color-surface);
@@ -210,7 +204,6 @@ section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
 .skill-bar { height: 2px; background: var(--color-border); margin-top: 1rem; border-radius: 2px; }
 .skill-fill { height: 100%; background: linear-gradient(90deg, var(--color-accent), var(--color-accent2)); border-radius: 2px; transition: width 1s ease; }
 
-/* ── PROJECTS ── */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
 .project-card {
   background: var(--color-surface);
@@ -240,7 +233,6 @@ section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
 }
 .project-link:hover { gap: 0.8rem; }
 
-/* ── CONTACT ── */
 .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .contact-info p { color: var(--color-muted); font-size: 0.97rem; line-height: 1.9; margin-bottom: 2rem; }
 .contact-links { display: flex; flex-direction: column; gap: 1rem; }
@@ -276,18 +268,15 @@ section { padding: 7rem 6vw; max-width: 1100px; margin: 0 auto; }
 }
 .contact-form button:hover { opacity: 0.8; }
 
-/* ── FOOTER ── */
 footer {
   border-top: 1px solid var(--color-border);
   padding: 2rem 6vw; text-align: center;
   color: var(--color-muted); font-size: 0.78rem; letter-spacing: 0.08em;
 }
 
-/* ── FADE-IN ANIMATIONS ── */
 .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
   .nav-links { display: none; }
@@ -297,11 +286,8 @@ footer {
 </head>
 <body>
 
-<!-- ============================================================
-     🧭 NAVIGATION BAR
-     ============================================================ -->
 <nav>
-  <!-- ✏️ Change "NK" to your initials -->
+
   <a href="#Person" class="nav-logo">NK</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -311,22 +297,15 @@ footer {
   </ul>
 </nav>
 
-
-<!-- ============================================================
-     🏠 Person SECTION — The first thing visitors see
-     ============================================================ -->
 <section id="Person">
   <div class="Person-eyebrow">Welcome to my portfolio</div>
 
-  <!-- ✏️ Change "Your" and "Name" below -->
   <h1 class="Person-name">
     Nischal<br /><span>Koirala</span>
   </h1>
 
-  <!-- ✏️ Change the role title below -->
   <p class="Person-role">Aspiring Software Developer & Tech Enthusiast</p>
 
-  <!-- ✏️ Change this short description about yourself -->
   <p class="Person-desc">
     I'm a Computer Science student based in Hetauda, Nepal — passionate about
     building things with code and learning new technologies. I love turning ideas into reality through clean,
@@ -339,10 +318,6 @@ footer {
   <div class="Person-scroll">Scroll</div>
 </section>
 
-
-<!-- ============================================================
-     👤 ABOUT SECTION
-     ============================================================ -->
 <section id="about">
   <div class="fade-in">
     <div class="section-label">Who I am</div>
@@ -351,19 +326,16 @@ footer {
 
   <div class="about-grid fade-in">
 
-    <!-- Photo placeholder — replace with <img src="your-photo.jpg"> if you have a photo -->
     <div class="about-photo-wrap">
       <div class="about-photo-bg"></div>
       <div class="about-photo-inner">
         
         <img src="https://i.imgur.com/3YO0zwY.jpeg" alt="Nischal" style="width:100%;height:100%;object-fit:cover;">
-        <!-- ✏️ To add your photo, replace this block with:
-             <img src="photo.jpg" alt="Nischal" style="width:100%;height:100%;object-fit:cover;"> -->
       </div>
     </div>
 
     <div class="about-text">
-      <!-- ✏️ Edit the paragraphs below to describe yourself -->
+
       <p>
         Hi! I'm a passionate learner currently pursuing my Bachelor of Computer Applications.
         I enjoy problem-solving and creating things that live on the internet — from
@@ -378,7 +350,6 @@ footer {
         or experimenting with new project ideas.
       </p>
 
-      <!-- ✏️ Edit the quick facts below -->
       <div class="about-facts">
         <div class="fact">
           <span class="fact-label">📍 Location</span>
@@ -402,10 +373,6 @@ footer {
   </div>
 </section>
 
-
-<!-- ============================================================
-     💻 SKILLS SECTION
-     ============================================================ -->
 <section id="skills">
   <div class="fade-in">
     <div class="section-label">What I know</div>
@@ -413,9 +380,6 @@ footer {
   </div>
 
   <div class="skills-grid fade-in">
-
-    <!-- ✏️ Each block below is one skill card.
-         Change the icon, name, level text, and bar width (0% to 100%) -->
 
     <div class="skill-card">
       <div class="skill-icon">🌐</div>
@@ -459,15 +423,10 @@ footer {
       <div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div>
     </div>
 
-    <!-- ✏️ To add more skills, copy one skill-card block and paste it here -->
 
   </div>
 </section>
 
-
-<!-- ============================================================
-     🗂️ PROJECTS SECTION
-     ============================================================ -->
 <section id="projects">
   <div class="fade-in">
     <div class="section-label">What I've built</div>
@@ -476,8 +435,6 @@ footer {
 
   <div class="projects-grid fade-in">
 
-    <!-- ✏️ Each block below is one project card.
-         Change the title, description, tags, and link -->
 
     <div class="project-card">
       <div class="project-number">01</div>
@@ -490,24 +447,10 @@ footer {
         <span class="tag">HTML</span>
         <span class="tag">CSS</span>
       </div>
-      <!-- ✏️ Replace "#" with your project link (GitHub or live site) -->
+
       <a href="#" class="project-link">View project →</a>
     </div>
-<!----
-    <div class="project-card">
-      <div class="project-number">02</div>
-      <div class="project-title">Grade Calculator App</div>
-      <div class="project-desc">
-        A command-line Python tool that calculates GPA from user-entered marks.
-        Uses object-oriented programming concepts and input validation.
-      </div>
-      <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">OOP</span>
-      </div>
-      <a href="#" class="project-link">View project →</a>
-    </div>
--->
+
     <div class="project-card">
       <div class="project-number">02</div>
       <div class="project-title">To-Do List Web App</div>
@@ -537,15 +480,9 @@ footer {
       <a href="https://github.com/Neeeschal/Personal-Projects-/blob/main/contact_book.py" class="project-link">View project →</a>
     </div>
 
-    <!-- ✏️ To add more projects, copy one project-card block and paste it here -->
-
   </div>
 </section>
 
-
-<!-- ============================================================
-     📬 CONTACT SECTION
-     ============================================================ -->
 <section id="contact">
   <div class="fade-in">
     <div class="section-label">Get in touch</div>
@@ -555,21 +492,19 @@ footer {
   <div class="contact-wrap fade-in">
 
     <div class="contact-info">
-      <!-- ✏️ Edit the message below -->
       <p>
         I'm currently looking for internship opportunities and would love to hear
         from you. Whether you have a question, a project idea, or just want to say
         hi — my inbox is always open!
       </p>
 
-      <!-- ✏️ Update your contact details below -->
       <div class="contact-links">
 
         <a href="mailto:nischal0816@gmail.com" class="contact-link">
           <span class="contact-link-icon">📧</span>
           <div>
             <div class="contact-link-label">Email</div>
-            <!-- ✏️ Replace with your email -->
+      
             <div class="contact-link-val">nischal0816@gmail.com</div>
           </div>
         </a>
@@ -578,7 +513,7 @@ footer {
           <span class="contact-link-icon">🐙</span>
           <div>
             <div class="contact-link-label">GitHub</div>
-            <!-- ✏️ Replace with your GitHub username -->
+           
             <div class="contact-link-val">https://github.com/Neeeschal</div>
           </div>
         </a>
@@ -587,7 +522,7 @@ footer {
           <span class="contact-link-icon">💼</span>
           <div>
             <div class="contact-link-label">LinkedIn</div>
-            <!-- ✏️ Replace with your LinkedIn profile -->
+        
             <div class="contact-link-val">https://www.linkedin.com/in/nischal-koirala-401698339/</div>
           </div>
         </a>
@@ -595,7 +530,6 @@ footer {
       </div>
     </div>
 
-    <!-- Quick message form (visual only — needs a backend to actually send) -->
     <div class="contact-form">
       <input type="text" placeholder="Your Name" />
       <input type="email" placeholder="Your Email" />
@@ -607,26 +541,20 @@ footer {
 </section>
 
 
-<!-- ============================================================
-     🔻 FOOTER
-     ============================================================ -->
+
 <footer>
   <!-- ✏️ Replace "Nischal" with your actual name -->
   <p>© 2025 Nischal Koirala · Built with HTML & CSS · Hetauda, Nepal</p>
 </footer>
 
-
-<!-- ============================================================
-     ⚙️ ANIMATIONS — you don't need to touch this!
-     ============================================================ -->
 <script>
-// Makes sections gently fade in as you scroll
+
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Animates skill bars when they come into view
+
 const barObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
